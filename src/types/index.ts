@@ -10,6 +10,10 @@ export interface Player {
   updated_at: Date;
 }
 
+export interface PlayerDict {
+  [key: number]: Player;
+}
+
 export interface Dalton {
   id: number;
   reason: string;

@@ -27,8 +27,8 @@ const playersData: Player[] = [
   },
   {
     id: 3,
-    name: 'Luuk',
-    nickname: 'Bartoli',
+    name: 'Jonas',
+    nickname: 'Jonas',
     singles_rating_year: 4,
     doubles_rating_year: 4,
     singles_rating: 3.8327,
