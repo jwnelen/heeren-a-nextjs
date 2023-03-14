@@ -28,7 +28,7 @@ export default function HomePage() {
             <br />
           </p>
         </div>
-        <div className='absolute top-0 -z-10 h-screen w-screen'>
+        <div className='absolute top-0 -z-10 h-screen w-screen opacity-30'>
           <Image
             fill={true}
             className='relative h-full w-full object-cover'
