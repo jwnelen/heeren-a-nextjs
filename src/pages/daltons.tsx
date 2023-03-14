@@ -24,7 +24,7 @@ const DaltonItem = ({
   players: PlayerDict;
 }) => {
   return (
-    <div className='w-full space-y-4 rounded-xl bg-blue-100 p-4'>
+    <div className='w-full space-y-4 rounded-xl bg-blue-50 p-4 shadow shadow-primary-200'>
       <div className='flex items-center justify-between'>
         <h3 className='text-left'>{dalton.reason}</h3>
         <p>{dateToString(dalton.date_earned)}</p>

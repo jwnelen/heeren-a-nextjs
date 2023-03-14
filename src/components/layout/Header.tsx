@@ -10,7 +10,7 @@ const links = [
 export default function Header() {
   return (
     <header className='absolute top-0 z-50 w-full'>
-      <div className='layout flex h-14 items-center justify-between rounded-xl bg-gray-400 px-10'>
+      <div className='layout flex h-14 items-center justify-between border-b-2 border-primary-200 px-10'>
         <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
           Home
         </UnstyledLink>
