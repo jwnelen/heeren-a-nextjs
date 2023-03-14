@@ -4,8 +4,7 @@ import { useRouter } from 'next/router';
 const defaultMeta = {
   title: 'Heeren A website',
   siteName: 'Heeren A website',
-  description:
-    'Het begin is daar!',
+  description: 'Het begin is daar!',
   /** Without additional '/' on the end, e.g. https://theodorusclarence.com */
   url: 'heeren-a.vercel.app',
   type: 'website',
