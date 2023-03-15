@@ -1,6 +1,6 @@
-import getPrisma from '@/lib/prisma';
+import { Player } from '@prisma/client';
 
-import { Player } from '@/types';
+import getPrisma from '@/lib/prisma';
 
 const prisma = getPrisma();
 

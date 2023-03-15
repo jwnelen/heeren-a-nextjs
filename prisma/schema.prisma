@@ -11,13 +11,13 @@ datasource db {
 }
 
 model Player {
-  id                  Int      @id @default(autoincrement())
+  id                  Int       @id @default(autoincrement())
   name                String
   nickname            String
-  singles_rating      Decimal
-  doubles_rating      Decimal
+  singles_rating      Float
+  doubles_rating      Float
   singles_rating_year Int
   doubles_rating_year Int
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  createdAt           DateTime? @default(now())
+  updatedAt           DateTime? @updatedAt
 }

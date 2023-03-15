@@ -16,8 +16,7 @@ export default function Players() {
   const handleSubmit = (p: Player) => {
     if (!p) return;
     addNewPlayer(p).then(() => {
-      // eslint-disable-next-line no-console
-      console.log('added player');
+      alert('Speler toegevoegd!');
     });
   };
 
@@ -27,8 +26,8 @@ export default function Players() {
         <h1>Spelers</h1>
         <div className='layout mt-10 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2 xl:grid-cols-4'>
           {players &&
-            players.map((player: Player) => (
-              <PlayerCard player={player} key={player.id} />
+            players.map((player: Player, index) => (
+              <PlayerCard player={player} key={`${player.id}-${index}`} />
             ))}
         </div>
         <div className='flex flex-row justify-center'>

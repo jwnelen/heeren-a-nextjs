@@ -8,6 +8,15 @@ type formProps = {
   onSubmit: (p: Player) => void;
 };
 
+const defaultPlayer: Player = {
+  name: '',
+  nickname: '',
+  singles_rating: 2,
+  doubles_rating: 2,
+  singles_rating_year: 2,
+  doubles_rating_year: 2,
+};
+
 type textInputProps = {
   label: string;
   placeholder: string;
@@ -17,17 +26,19 @@ type textInputProps = {
 };
 
 export const AddPlayerForm = ({ onSubmit }: formProps) => {
-  const [player, setPlayer] = useState<Player>({
-    name: '',
-    nickname: '',
-    singles_rating: 2,
-    doubles_rating: 2,
-    singles_rating_year: 2,
-    doubles_rating_year: 2,
-  });
+  const [player, setPlayer] = useState<Player>(defaultPlayer);
 
   const submitting = (e: FormEvent) => {
     e.preventDefault();
+
+    setPlayer((prevState) => ({
+      ...prevState,
+      singles_rating: parseFloat(prevState.singles_rating.toString()),
+      doubles_rating: parseFloat(prevState.doubles_rating.toString()),
+      singles_rating_year: parseInt(prevState.singles_rating_year.toString()),
+      doubles_rating_year: parseInt(prevState.doubles_rating_year.toString()),
+    }));
+
     onSubmit(player);
   };
 
@@ -47,12 +58,16 @@ export const AddPlayerForm = ({ onSubmit }: formProps) => {
           type={type}
           value={value}
           onChange={(e) => {
-            setPlayer({ ...player, [label]: e.target.value });
+            const newVal =
+              type === 'number'
+                ? parseFloat(e.target.value)
+                : e.target.value || '';
+            setPlayer({ ...player, [label]: newVal });
           }}
           name={label}
           pattern={inputPattern ? inputPattern : undefined}
           id={`${label}`}
-          required
+          required={true}
           placeholder={placeholder}
         ></input>
       </div>
@@ -81,14 +96,14 @@ export const AddPlayerForm = ({ onSubmit }: formProps) => {
       <div className='flex flex-row items-center justify-center gap-2'>
         {TextInput({
           label: 'singles_rating',
-          value: player.singles_rating,
+          value: player.singles_rating.toString(),
           inputPattern: '[1-9]{1}',
           type: 'number',
           placeholder: 'Actuele rating enkels',
         })}
         {TextInput({
           label: 'doubles_rating',
-          value: player.doubles_rating,
+          value: player.doubles_rating.toString(),
           inputPattern: '[1-9]{1}',
           type: 'number',
           placeholder: 'Actuele rating dubbel',

@@ -7,7 +7,7 @@ import usePlayers from '@/hooks/players';
 import TextButton from '@/components/buttons/TextButton';
 import Layout from '@/components/layout/Layout';
 
-import { Dalton, PlayerDict } from '@/types';
+import { Dalton } from '@/types';
 
 const dateToString = (date: Date) => {
   date = new Date(date);
@@ -20,15 +20,16 @@ const dateToString = (date: Date) => {
 
 const DaltonItem = ({
   dalton,
-  players,
-}: {
+}: // players,
+{
   dalton: Dalton;
-  players: PlayerDict;
+  // players: PlayerDict;
 }) => {
   const isTaken = !!dalton?.date_took;
-  const playerEarned = dalton?.player_earned
-    ? players[dalton.player_earned]
-    : undefined;
+  const playerEarned = undefined;
+  // const playerEarned = dalton?.player_earned
+  // ? players[dalton.player_earned]
+  // undefined;
 
   return (
     <div
@@ -52,13 +53,14 @@ const DaltonItem = ({
         </div>
         <div className='flex justify-start space-x-4'>
           {playerEarned ? (
-            <p>Verdiend door {playerEarned.nickname} </p>
+            <p>Verdiend door {playerEarned} </p>
           ) : (
             <p>Zelf verdient</p>
           )}
           {isTaken ? (
-            <p>Genomen door {players[dalton.player_took]?.nickname}</p>
+            <p>Genomen</p>
           ) : (
+            // <p>Genomen door {players[dalton.player_took]?.nickname}</p>
             <p>Nog niet genomen</p>
           )}
         </div>
@@ -75,7 +77,7 @@ const DaltonItem = ({
 export default function Daltons() {
   const { openDaltons, closedDaltons, isLoading, isError } = useDaltons();
   const p = usePlayers();
-  const players: PlayerDict = p.playersDict;
+  // const players: PlayerDict = p.playersDict;
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
@@ -90,7 +92,7 @@ export default function Daltons() {
         <div className='layout flex flex-col items-center justify-center space-y-6'>
           {openDaltons &&
             openDaltons.map((dalton: Dalton) => (
-              <DaltonItem key={dalton.id} dalton={dalton} players={players} />
+              <DaltonItem key={dalton.id} dalton={dalton} />
             ))}
         </div>
 
@@ -98,7 +100,7 @@ export default function Daltons() {
         <div className='layout flex flex-col items-center justify-center space-y-6'>
           {closedDaltons &&
             closedDaltons.map((dalton: Dalton) => (
-              <DaltonItem key={dalton.id} dalton={dalton} players={players} />
+              <DaltonItem key={dalton.id} dalton={dalton} />
             ))}
         </div>
       </div>
