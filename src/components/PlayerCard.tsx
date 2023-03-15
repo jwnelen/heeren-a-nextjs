@@ -1,20 +1,33 @@
 import { Player } from '@/types';
 
+const Rating = ({
+  rating,
+  rating_year,
+}: {
+  rating: number;
+  rating_year: number;
+}) => {
+  return (
+    <div className='overflow-hidden rounded border-2 border-primary-500'>
+      <span className='border-r-2 border-primary-500 bg-primary-500 p-2 font-bold text-white'>
+        {rating_year}
+      </span>
+      <span className='p-1'>{rating}</span>
+    </div>
+  );
+};
+
 const RatingDisplay = ({ player }: { player: Player }) => {
   return (
-    <div className='flex flex-row space-x-2'>
-      <div className='overflow-hidden rounded border-2 border-gray-800'>
-        <span className='border-r-2 border-gray-800 bg-black p-2 font-bold text-white'>
-          {player.singles_rating_year}
-        </span>
-        <span className='p-1'>{player.singles_rating}</span>
-      </div>
-      <div className='overflow-hidden rounded border-2 border-gray-800'>
-        <span className='border-r-2 border-gray-800 bg-black p-2 font-bold text-white'>
-          {player.doubles_rating_year}
-        </span>
-        <span className='p-1'>{player.doubles_rating}</span>
-      </div>
+    <div className='flex flex-row space-x-4'>
+      <Rating
+        rating={player.singles_rating}
+        rating_year={player.singles_rating_year}
+      ></Rating>
+      <Rating
+        rating={player.doubles_rating}
+        rating_year={player.doubles_rating_year}
+      ></Rating>
     </div>
   );
 };

@@ -36,6 +36,17 @@ const playersData: Player[] = [
     created_at: new Date(),
     updated_at: new Date(),
   },
+  {
+    id: 4,
+    name: 'Jonas',
+    nickname: 'Jonas',
+    singles_rating_year: 4,
+    doubles_rating_year: 4,
+    singles_rating: 3.8327,
+    doubles_rating: 4.6689,
+    created_at: new Date(),
+    updated_at: new Date(),
+  },
 ];
 
 export default function players(req: NextApiRequest, res: NextApiResponse) {

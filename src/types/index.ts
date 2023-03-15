@@ -17,10 +17,10 @@ export interface PlayerDict {
 export interface Dalton {
   id: number;
   reason: string;
-  player_earned: number;
+  player_earned?: number;
   player_took: number;
   date_earned: Date;
-  date_took: Date;
+  date_took?: Date;
   created_at: Date;
   updated_at: Date;
 }
