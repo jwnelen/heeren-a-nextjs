@@ -20,10 +20,10 @@ export const AddPlayerForm = ({ onSubmit }: formProps) => {
   const [player, setPlayer] = useState<Player>({
     name: '',
     nickname: '',
-    singles_rating: 0,
-    doubles_rating: 0,
-    singles_rating_year: 0,
-    doubles_rating_year: 0,
+    singles_rating: 2,
+    doubles_rating: 2,
+    singles_rating_year: 2,
+    doubles_rating_year: 2,
   });
 
   const submitting = (e: FormEvent) => {
@@ -64,15 +64,13 @@ export const AddPlayerForm = ({ onSubmit }: formProps) => {
       onSubmit={submitting}
       className='w-fit space-y-4 rounded-lg bg-blue-100 p-8 px-8'
     >
-      <div>
+      <div className='flex flex-row items-center justify-center gap-2'>
         {TextInput({
           label: 'name',
           value: player.name,
           type: 'text',
-          placeholder: 'Name',
+          placeholder: 'Naam',
         })}
-      </div>
-      <div>
         {TextInput({
           label: 'nickname',
           value: player.nickname,
@@ -80,32 +78,32 @@ export const AddPlayerForm = ({ onSubmit }: formProps) => {
           placeholder: 'Nickname',
         })}
       </div>
-      <div className='flex flex-row justify-center'>
+      <div className='flex flex-row items-center justify-center gap-2'>
         {TextInput({
           label: 'singles_rating',
           value: player.singles_rating,
+          inputPattern: '[1-9]{1}',
           type: 'number',
           placeholder: 'Actuele rating enkels',
         })}
         {TextInput({
           label: 'doubles_rating',
           value: player.doubles_rating,
+          inputPattern: '[1-9]{1}',
           type: 'number',
           placeholder: 'Actuele rating dubbel',
         })}
       </div>
-      <div className='flex flex-row justify-center'>
+      <div className='flex flex-row items-center justify-center gap-2'>
         {TextInput({
           label: 'singles_rating_year',
           value: player.singles_rating_year,
           type: 'number',
-          inputPattern: '[1-9]{1}',
           placeholder: 'Eindejaars rating enkels',
         })}
         {TextInput({
           label: 'doubles_rating_year',
           value: player.doubles_rating_year,
-          inputPattern: '[1-9]{1}',
           type: 'number',
           placeholder: 'Eindejaars rating dubbel',
         })}

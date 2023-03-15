@@ -9,13 +9,16 @@ import { PlayerCard } from '@/components/PlayerCard';
 import { Player } from '@/types';
 
 export default function Players() {
-  const { players, isLoading, isError, setPlayers } = usePlayers();
+  const { players, isLoading, isError, addNewPlayer } = usePlayers();
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error...</div>;
 
   const handleSubmit = (p: Player) => {
-    setPlayers([...players, p]);
-    return;
+    if (!p) return;
+    addNewPlayer(p).then(() => {
+      // eslint-disable-next-line no-console
+      console.log('added player');
+    });
   };
 
   return (

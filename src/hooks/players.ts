@@ -1,24 +1,38 @@
-import { useState } from 'react';
 import useSWR from 'swr';
+
+import { apiClient } from '@/lib/apiClient';
+import fetcher from '@/lib/fetcher';
 
 import { Player, PlayerDict } from '@/types';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 export default function usePlayers() {
-  const { data, error } = useSWR('/api/players', fetcher);
-  const [players, setPlayers] = useState<Player[]>(data);
+  const {
+    data = [],
+    error,
+    mutate,
+  } = useSWR<Player[]>('/api/players', fetcher);
+  const dict: PlayerDict = [];
 
-  const dict: PlayerDict = data?.reduce((acc: PlayerDict, player: Player) => {
-    acc[player?.id] = player;
-    return acc;
-  }, []);
+  const addNewPlayer = async (player: Player) => {
+    const newPl: Player = await apiClient.put('/api/players', player);
+    await mutate([...data, newPl]);
+  };
+
+  if (!data)
+    return {
+      players: [],
+      addNewPlayer,
+      playersDict: dict,
+      isLoading: true,
+      isError: false,
+      setPlayers: mutate,
+    };
 
   return {
-    players,
+    players: data,
     playersDict: dict,
+    addNewPlayer,
     isLoading: !error && !data,
     isError: error,
-    setPlayers,
   };
 }
