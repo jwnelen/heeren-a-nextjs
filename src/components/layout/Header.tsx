@@ -3,14 +3,14 @@ import * as React from 'react';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 const links = [
-  { href: '/players', label: 'Players' },
+  { href: '/players', label: 'Spelers' },
   { href: '/daltons', label: 'Daltons' },
 ];
 
 export default function Header() {
   return (
-    <header className='absolute top-0 z-50 w-full bg-white'>
-      <div className='layout flex h-14 items-center justify-between'>
+    <header className='absolute top-0 z-50 w-full'>
+      <div className='layout flex h-14 items-center justify-between border-b-2 border-primary-200 px-10'>
         <UnstyledLink href='/' className='font-bold hover:text-gray-600'>
           Home
         </UnstyledLink>
